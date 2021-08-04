@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/bitfield/script"
+	"github.com/nxcc/script"
 )
 
 func main() {

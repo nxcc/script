@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/bitfield/script"
+	"github.com/nxcc/script"
 )
 
 func main() {

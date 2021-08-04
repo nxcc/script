@@ -1,12 +1,12 @@
-[![GoDoc](https://godoc.org/github.com/bitfield/script?status.png)](http://godoc.org/github.com/bitfield/script)[![Go Report Card](https://goreportcard.com/badge/github.com/bitfield/script)](https://goreportcard.com/report/github.com/bitfield/script)[![Mentioned in Awesome Go](https://awesome.re/mentioned-badge-flat.svg)](https://github.com/avelino/awesome-go)[![CircleCI](https://circleci.com/gh/bitfield/script.svg?style=svg)](https://circleci.com/gh/bitfield/script)
+[![GoDoc](https://godoc.org/github.com/nxcc/script?status.png)](http://godoc.org/github.com/nxcc/script)[![Go Report Card](https://goreportcard.com/badge/github.com/nxcc/script)](https://goreportcard.com/report/github.com/nxcc/script)
 
 ```go
-import github.com/bitfield/script
+import github.com/nxcc/script
 ```
 
 # What is `script`?
 
-`script` is a Go library for doing the kind of tasks that shell scripts are good at: reading files, executing subprocesses, counting lines, matching strings, and so on.
+`script` is a Go library for doing the kind of tasks that shell scripts are good at: reading files, executing subprocesses, counting lines, matching strings, and so on. It is a fork of the nice `script` library, with some additions to make it even more useful, at least for me.
 
 Why shouldn't it be as easy to write system administration programs in Go as it is in a typical shell? `script` aims to make it just that easy.
 
@@ -60,11 +60,8 @@ You can find more example programs (mostly replicating traditional Unix utilitie
 
 # Who wrote this?
 
-Not content with maintaining this library, John Arundel, of [Bitfield Consulting](https://bitfieldconsulting.com), is a highly experienced Go trainer and mentor who can teach you Go from scratch, take you beyond the basics, or even help you reach complete mastery of the Go programming language. See [Learn Go with Bitfield](https://bitfieldconsulting.com/golang/learn) for details, or email go@bitfieldconsulting.com to find out more.
+This is a fork of https://github.com/bitfield/script.
 
-[![](img/fundamentals.png)](https://bitfieldconsulting.com/books/fundamentals) [![](img/data.png)](https://bitfieldconsulting.com/books/data)
-
-John is also the author of the popular [For the Love of Go](https://bitfieldconsulting.com/books) series of ebooks for Go beginners and improvers. Priced at a cheerful $4.99 each, they'll introduce you to the key concepts of Go in a friendly and patient way, and encourage you to start writing useful Go code right from the first page.
 
 # Table of contents<!-- omit in toc -->
 - [What is `script`?](#what-is-script)
@@ -242,7 +239,7 @@ It's a fair question. Shell scripts and one-liners are perfectly adequate for bu
 
 * Shell scripts don't scale. Because there are very limited facilities for logic and abstraction, and because any successful program tends to grow remorselessly over time, shell scripts can become an unreadable mess of special cases and spaghetti code. We've all seen it, if not, indeed, done it.
 
-* Shell syntax is awkward: quoting, whitespace, and brackets can require a lot of fiddling to get right, and so many characters are magic to the shell (`*`, `?`, `>` and so on) that this can lead to subtle bugs. Scripts can work fine for years until you suddenly encounter a file whose name contains whitespace, and then everything breaks horribly.
+* Shell syntax is awkward: quoting, whitespace, and brackets can require a lot of fiddling to get right, and so many characters are magic to the shell (`*`, `?`, `>` and so on) that this can lead to subtle bugs. scripts can work fine for years until you suddenly encounter a file whose name contains whitespace, and then everything breaks horribly.
 
 * Deploying shell scripts obviously requires at least a (sizable) shell binary in addition to the source code, but it usually also requires an unknown and variable number of extra userland programs (`cut`, `grep`, `head`, and friends). If you're building container images, for example, you effectively need to include a whole Unix distribution with your program, which runs to hundreds of megabytes, and is not at all in the spirit of containers.
 
@@ -274,7 +271,7 @@ There's a lot going on there, and it's pleasing to find that the equivalent `scr
 package main
 
 import (
-	"github.com/bitfield/script"
+	"github.com/nxcc/script"
 )
 
 func main() {
@@ -885,19 +882,3 @@ Since `script` is designed to help you write system administration programs, a f
 * [slice](examples/slice/main.go)
 * [tail](examples/tail/main.go)
 * [visitors](examples/visitors/main.go)
-
-[More examples would be welcome!](https://github.com/bitfield/script/pulls)
-
-If you use `script` for real work (or, for that matter, real play), I'm always very interested to hear about it. Drop me a line to john@bitfieldconsulting.com and tell me how you're using `script` and what you think of it!
-
-# Video tutorial
-
-The `script` library was covered in a recent episode of [Go Code Club](https://www.youtube.com/playlist?list=PLEcwzBXTPUE_YQR7R0BRtHBYJ0LN3Y0i3), where each week John and friends read and discuss a different Go package and explain it to one another.
-
-Watch the episode here: [Code Club: Script](https://www.youtube.com/watch?v=6S5EqzVwpEg)
-
-[![](https://img.youtube.com/vi/6S5EqzVwpEg/hqdefault.jpg)](https://www.youtube.com/watch?v=6S5EqzVwpEg)
-
-# How can I contribute?
-
-See the [contributor's guide](CONTRIBUTING.md) for some helpful tips.

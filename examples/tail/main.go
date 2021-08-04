@@ -5,7 +5,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/bitfield/script"
+	"github.com/nxcc/script"
 )
 
 func main() {

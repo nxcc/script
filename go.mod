@@ -1,4 +1,4 @@
-module github.com/bitfield/script
+module github.com/nxcc/script
 
 go 1.12
 

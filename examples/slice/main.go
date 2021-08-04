@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/bitfield/script"
+	"github.com/nxcc/script"
 )
 
 // This program reads all the files supplied to it on the command line, and

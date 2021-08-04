@@ -1,6 +1,6 @@
 package main
 
-import "github.com/bitfield/script"
+import "github.com/nxcc/script"
 
 // filters the least frequent line from input and copies it to standard output
 

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/bitfield/script"
+	"github.com/nxcc/script"
 	"log"
 	"os"
 	"strings"

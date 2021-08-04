@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/bitfield/script"
+	"github.com/nxcc/script"
 )
 
 // This program prints out the names of all files in the current directory.

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/bitfield/script"
+	"github.com/nxcc/script"
 )
 
 func main() {

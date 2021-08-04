@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/bitfield/script"
+	"github.com/nxcc/script"
 )
 
 // This version of cat takes a list of files on the command line, and prints

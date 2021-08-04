@@ -4,7 +4,7 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/bitfield/script"
+	"github.com/nxcc/script"
 )
 
 // Like Unix `ls`, hide files starting with '.'
