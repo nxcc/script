@@ -1,0 +1,4 @@
+apples       green    10
+bananas      yellow    2
+oranges      orange    1
+strawberrys  red      23

@@ -3,6 +3,7 @@ package script
 import (
 	"encoding/json"
 	"io/ioutil"
+	"strings"
 )
 
 func (p *Pipe) JSON(obj interface{}) error {
@@ -31,4 +32,15 @@ func (p *Pipe) End() (stdout, stderr string, err error) {
 	}
 	output, _ := p.String()
 	return output, "", nil
+}
+
+func (p *Pipe) SliceOfColumns() ([][]string, error) {
+	if p == nil || p.Error() != nil {
+		return nil, p.Error()
+	}
+	result := [][]string{}
+	p.EachLine(func(line string, out *strings.Builder) {
+		result = append(result, strings.Fields(line))
+	})
+	return result, p.Error()
 }
