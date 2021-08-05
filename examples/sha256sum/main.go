@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/nxcc/script"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/nxcc/script"
 )
 
 func main() {
@@ -16,7 +17,7 @@ func main() {
 	}
 
 	// Compare the SHA256 checksum to check if files are identical.
-	checkSums := strings.Split(hashFiles,"\n")
+	checkSums := strings.Split(hashFiles, "\n")
 	if checkSums[0] == checkSums[1] {
 		fmt.Println("Hashes are identical")
 		os.Exit(0)
