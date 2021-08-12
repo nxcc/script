@@ -20,6 +20,8 @@ import (
 	"bitbucket.org/creachadair/shell"
 )
 
+var DebugExec = false
+
 // Basename reads a list of filepaths from the pipe, one per line, and removes
 // any leading directory components from each line. If a line is empty, Basename
 // will produce '.'. Trailing slashes are removed.
@@ -129,11 +131,17 @@ func (p *Pipe) Exec(cmdLine string) *Pipe {
 	if !ok {
 		return p.WithError(fmt.Errorf("unbalanced quotes or backslashes in [%s]", cmdLine))
 	}
+	if DebugExec {
+		fmt.Printf("DEBUG: Exec(%#v)\n", args)
+	}
 	cmd := exec.Command(args[0], args[1:]...)
 	cmd.Stdin = p.Reader
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		q.SetError(err)
+	}
+	if DebugExec {
+		fmt.Printf("DEBUG: Output: %v%v%v\n", strings.Repeat("<", 8), string(output), strings.Repeat(">", 8))
 	}
 	return q.WithReader(bytes.NewReader(output))
 }
