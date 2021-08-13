@@ -141,7 +141,12 @@ func (p *Pipe) Exec(cmdLine string) *Pipe {
 		q.SetError(err)
 	}
 	if DebugExec {
-		fmt.Printf("DEBUG: Output: %v%v%v\n", strings.Repeat("<", 8), string(output), strings.Repeat(">", 8))
+		fmt.Printf(
+			"DEBUG: Output:\n%v\n%v\n%v\n",
+			strings.Repeat("<", 8),
+			strings.TrimRight(string(output), "\n"),
+			strings.Repeat(">", 8),
+		)
 	}
 	return q.WithReader(bytes.NewReader(output))
 }
