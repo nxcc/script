@@ -25,8 +25,8 @@ func Echo(s string) *Pipe {
 // Exec runs an external command and returns a pipe containing the output. If
 // the command had a non-zero exit status, the pipe's error status will also be
 // set to the string "exit status X", where X is the integer exit status.
-func Exec(s string) *Pipe {
-	return NewPipe().Exec(s)
+func Exec(s ...string) *Pipe {
+	return NewPipe().Exec(s...)
 }
 
 // IfExists tests whether the specified file exists, and returns a pipe whose

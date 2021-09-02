@@ -122,14 +122,23 @@ func (p *Pipe) EachLine(process func(string, *strings.Builder)) *Pipe {
 // Exec runs an external command and returns a pipe containing the output. If
 // the command had a non-zero exit status, the pipe's error status will also be
 // set to the string "exit status X", where X is the integer exit status.
-func (p *Pipe) Exec(cmdLine string) *Pipe {
+func (p *Pipe) Exec(cmdLine ...string) *Pipe {
 	if p == nil || p.Error() != nil {
 		return p
 	}
 	q := NewPipe()
-	args, ok := shell.Split(cmdLine) // strings.Fields doesn't handle quotes
-	if !ok {
-		return p.WithError(fmt.Errorf("unbalanced quotes or backslashes in [%s]", cmdLine))
+	args := []string{}
+	switch l := len(cmdLine); {
+	case l == 0:
+		p.WithError(fmt.Errorf("Exec: no command line given"))
+	case l == 1:
+		localArgs, ok := shell.Split(cmdLine[0]) // strings.Fields doesn't handle quotes
+		if !ok {
+			return p.WithError(fmt.Errorf("unbalanced quotes or backslashes in [%s]", cmdLine))
+		}
+		args = localArgs
+	default:
+		args = cmdLine
 	}
 	if DebugExec {
 		fmt.Printf("DEBUG: Exec(%#v)\n", args)
