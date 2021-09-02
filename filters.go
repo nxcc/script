@@ -132,6 +132,9 @@ func (p *Pipe) Exec(cmdLine ...string) *Pipe {
 	case l == 0:
 		p.WithError(fmt.Errorf("Exec: no command line given"))
 	case l == 1:
+		if len(cmdLine[0]) == 0 {
+			return p.WithError(fmt.Errorf("command line is empty"))
+		}
 		localArgs, ok := shell.Split(cmdLine[0]) // strings.Fields doesn't handle quotes
 		if !ok {
 			return p.WithError(fmt.Errorf("unbalanced quotes or backslashes in [%s]", cmdLine))
