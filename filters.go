@@ -148,6 +148,7 @@ func (p *Pipe) Exec(cmdLine ...string) *Pipe {
 	}
 	cmd := exec.Command(args[0], args[1:]...)
 	cmd.Stdin = p.Reader
+	cmd.Env = p.getEnv()
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		q.SetError(err)
@@ -161,6 +162,15 @@ func (p *Pipe) Exec(cmdLine ...string) *Pipe {
 		)
 	}
 	return q.WithReader(bytes.NewReader(output))
+}
+
+// getEnv retains the existing Environment and adds any variables from p.Env
+func (p *Pipe) getEnv() []string {
+	env := os.Environ()
+	for key, value := range p.Env {
+		env = append(env, fmt.Sprintf("%v=%v", key, value))
+	}
+	return env
 }
 
 // ExecForEach runs the supplied command once for each line of input, and

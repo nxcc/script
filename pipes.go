@@ -6,15 +6,19 @@ import (
 	"strconv"
 )
 
+// Env holds optional environment variables to be set for Exec
+type Env map[string]string
+
 // Pipe represents a pipe object with an associated ReadAutoCloser.
 type Pipe struct {
 	Reader ReadAutoCloser
+	Env    Env
 	err    error
 }
 
 // NewPipe returns a pointer to a new empty pipe.
 func NewPipe() *Pipe {
-	return &Pipe{ReadAutoCloser{}, nil}
+	return &Pipe{ReadAutoCloser{}, Env{}, nil}
 }
 
 // Close closes the pipe's associated reader. This is always safe to do, because

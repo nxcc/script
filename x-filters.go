@@ -33,3 +33,8 @@ func (p *Pipe) Template(data interface{}) *Pipe {
 func (p *Pipe) Execf(s string, a ...interface{}) *Pipe {
 	return p.Exec(fmt.Sprintf(s, a...))
 }
+
+func (p *Pipe) SetEnv(env Env) *Pipe {
+	p.Env = env
+	return p
+}
